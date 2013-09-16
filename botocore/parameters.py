@@ -434,6 +434,16 @@ class MapParameter(Parameter):
             new_value[key] = value[key]
 
 
+    def build_parameter_rest(self, style, value, built_params, label=''):
+        if hasattr(self, 'location'):
+            if self.location == 'header':
+                if hasattr(self, 'location_name'):
+                    prefix = self.location_name
+                else:
+                    prefix = self.name
+                for key in value:
+                    built_params['headers'][prefix+key] = value[key]
+            
 class StructParameter(Parameter):
 
     def validate(self, value):

@@ -192,10 +192,12 @@ class TestS3Operations(BaseEnvVar):
                                      body=fp,
                                      acl='public-read',
                                      content_language='piglatin',
-                                     content_type='text/plain')
+                                     content_type='text/plain',
+                                     metadata={'foo': 'bar'})
         headers = {'x-amz-acl': 'public-read',
                    'Content-Language': 'piglatin',
-                   'Content-Type': 'text/plain'}
+                   'Content-Type': 'text/plain',
+                   'x-amz-meta-foo': 'bar'}
         uri_params = {'Bucket': 'foo', 'Key': 'bar'}
         self.assertEqual(params['headers'], headers)
         self.assertEqual(params['uri_params'], uri_params)
